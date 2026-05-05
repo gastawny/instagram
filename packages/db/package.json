@@ -1,0 +1,10 @@
+{
+  "name": "@instagram/db",
+  "private": true,
+  "module": "./index.ts",
+  "types": "./index.ts",
+  "dependencies": {
+    "drizzle-orm": "latest",
+    "postgres": "latest"
+  }
+}

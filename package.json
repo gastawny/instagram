@@ -1,0 +1,37 @@
+{
+  "name": "instagram",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun run --filter '*' dev",
+    "build": "bun run --filter '*' build",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "typecheck": "bun run --filter '*' typecheck",
+    "db:generate": "bun run --filter api db:generate",
+    "db:migrate": "bun run --filter api db:migrate",
+    "db:studio": "bun run --filter api db:studio",
+    "api:gen": "bun run --filter www api:gen",
+    "prepare": "simple-git-hooks"
+  },
+  "dependencies": {
+    "@elysia/cors": "^1.4.2",
+    "@elysia/jwt": "^1.4.2",
+    "@sinclair/typebox": "latest"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "latest",
+    "lint-staged": "latest",
+    "simple-git-hooks": "latest",
+    "typescript": "latest"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "bunx lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,json}": "biome check --write"
+  }
+}

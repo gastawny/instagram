@@ -1,0 +1,26 @@
+{
+  "name": "api",
+  "private": true,
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "build": "bun build src/index.ts --outdir dist --target bun",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@elysiajs/swagger": "latest",
+    "@instagram/db": "workspace:*",
+    "@sinclair/typebox": "^0.34.49",
+    "drizzle-orm": "latest",
+    "elysia": "latest",
+    "postgres": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "bun-types": "latest",
+    "drizzle-kit": "latest",
+    "typescript": "latest"
+  }
+}

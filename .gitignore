@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.vinxi/
+.output/
+apps/www/src/api/
+.env
+*.env.local
+
+# Orval generated
+apps/www/src/api
+apps/www/src/swagger.json

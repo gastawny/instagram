@@ -1,0 +1,6 @@
+{
+  "name": "@instagram/config",
+  "private": true,
+  "module": "./index.ts",
+  "types": "./index.ts"
+}
