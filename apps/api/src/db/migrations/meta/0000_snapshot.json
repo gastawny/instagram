@@ -1,5 +1,5 @@
 {
-  "id": "024575d6-6d3c-4713-8472-0a5328f38e4f",
+  "id": "e2590683-db2e-45db-b7fd-cb10cd1d7dad",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -49,10 +49,20 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "uuid",
+          "type": "bigint",
           "primaryKey": true,
           "notNull": true,
-          "default": "gen_random_uuid()"
+          "identity": {
+            "type": "always",
+            "name": "usuarios_id_seq",
+            "schema": "public",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "9223372036854775807",
+            "cache": "1",
+            "cycle": false
+          }
         },
         "nome": {
           "name": "nome",

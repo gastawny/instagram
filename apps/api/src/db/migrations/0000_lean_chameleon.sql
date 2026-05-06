@@ -6,7 +6,7 @@ CREATE TABLE "token_blocklist" (
 );
 --> statement-breakpoint
 CREATE TABLE "usuarios" (
-	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"id" bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY (sequence name "usuarios_id_seq" INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START WITH 1 CACHE 1),
 	"nome" text NOT NULL,
 	"email" text NOT NULL,
 	"usuario" text NOT NULL,

@@ -1,7 +1,7 @@
-import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { bigint, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 export const usuarios = pgTable("usuarios", {
-  id: uuid("id").defaultRandom().primaryKey(),
+  id: bigint("id", { mode: "number" }).primaryKey().generatedAlwaysAsIdentity(),
   nome: text("nome").notNull(),
   email: text("email").notNull().unique(),
   usuario: text("usuario").notNull().unique(),
