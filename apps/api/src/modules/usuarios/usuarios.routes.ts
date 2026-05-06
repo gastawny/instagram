@@ -46,7 +46,7 @@ export const usuariosRoutes = new Elysia({ prefix: "/usuarios" })
       try {
         const usuario = await service.login(body.usuario, body.senha);
         const token = await jwt.sign({
-          sub: usuario.id,
+          sub: usuario.id.toString(),
           usuario: usuario.usuario,
         });
         return ok("LOGIN_SUCESSO", "Login realizado com sucesso", {
@@ -145,7 +145,7 @@ export const usuariosRoutes = new Elysia({ prefix: "/usuarios" })
     }
 
     try {
-      const dados = await service.obterPorId(params.id);
+      const dados = await service.obterPorId(Number(params.id));
       return ok("USUARIO_ENCONTRADO", "Dados do usuário recuperados", dados);
     } catch (e) {
       const codigo = (e as Error).message;
@@ -178,7 +178,7 @@ export const usuariosRoutes = new Elysia({ prefix: "/usuarios" })
       }
 
       try {
-        const dados = await service.atualizar(params.id, body);
+        const dados = await service.atualizar(Number(params.id), body);
         return ok(
           "USUARIO_ATUALIZADO",
           "Usuário atualizado com sucesso",
@@ -215,7 +215,7 @@ export const usuariosRoutes = new Elysia({ prefix: "/usuarios" })
     }
 
     try {
-      await service.deletar(params.id);
+      await service.deletar(Number(params.id));
       return ok("OPERACAO_SUCESSO", "Usuário deletado com sucesso");
     } catch (e) {
       const codigo = (e as Error).message;

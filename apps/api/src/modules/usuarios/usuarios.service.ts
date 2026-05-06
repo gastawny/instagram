@@ -133,7 +133,7 @@ export class UsuariosService {
     return resposta;
   }
 
-  async obterPorId(id: string) {
+  async obterPorId(id: number) {
     logger.payload("obterPorId", { id });
 
     logger.dbQuery("obterPorId", "usuarios.findFirst", { id });
@@ -160,7 +160,7 @@ export class UsuariosService {
   }
 
   async atualizar(
-    id: string,
+    id: number,
     data: {
       nome: string;
       email: string;
@@ -233,7 +233,7 @@ export class UsuariosService {
     return resposta;
   }
 
-  async deletar(id: string) {
+  async deletar(id: number) {
     logger.payload("deletar", { id });
 
     logger.dbQuery("deletar", "usuarios.delete", { id });

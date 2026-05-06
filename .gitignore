@@ -7,5 +7,4 @@ apps/www/src/api/
 *.env.local
 
 # Orval generated
-apps/www/src/api
 apps/www/src/swagger.json
