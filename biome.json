@@ -8,7 +8,9 @@
       "!**/.vinxi",
       "!**/.output",
       "!**/apps/www/src/api",
-      "!**/apps/www/src/routeTree.gen.ts"
+      "!**/apps/www/src/routeTree.gen.ts",
+      "!**/apps/www/src/swagger.json",
+      "!**/apps/www/src/api"
     ]
   },
   "linter": {

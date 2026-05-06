@@ -2,7 +2,6 @@ node_modules/
 dist/
 .vinxi/
 .output/
-apps/www/src/api/
 .env
 *.env.local
 
