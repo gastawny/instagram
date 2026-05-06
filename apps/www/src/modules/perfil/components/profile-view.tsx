@@ -1,8 +1,8 @@
+import { LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { LogOut } from "lucide-react";
 import type { Usuario } from "@/shared/auth/auth-context";
 import { DeleteAccountDialog } from "./delete-account-dialog";
 

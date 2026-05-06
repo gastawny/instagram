@@ -73,7 +73,7 @@ export function ProfileEditForm({
         id: user.id,
         data: body,
       })) as unknown as Usuario;
-      auth.login(auth.token!, updated);
+      if (auth.token) auth.login(auth.token, updated);
       onSaved();
     } catch (e) {
       if (e instanceof ApiRequestError) {

@@ -1,4 +1,16 @@
-import { API_URL } from "@/env";
+import { addLog } from "@/shared/request-log/request-log-store";
+import {
+  buildApiUrl,
+  type ServerConfig,
+} from "@/shared/server-config/server-config-context";
+
+function getApiUrl(): string {
+  try {
+    const raw = localStorage.getItem("server_config");
+    if (raw) return buildApiUrl(JSON.parse(raw) as ServerConfig);
+  } catch {}
+  return "";
+}
 
 export class ApiRequestError extends Error {
   constructor(
@@ -26,14 +38,32 @@ export const apiClient = async <T>(
     headers.set("Authorization", `Bearer ${token}`);
   }
 
-  const response = await fetch(`${API_URL}${url}`, {
+  const response = await fetch(`${getApiUrl()}${url}`, {
     ...options,
     headers,
   });
 
   const body = await response.json();
+  const isError = !response.ok || body.status === "erro";
 
-  if (!response.ok || body.status === "erro") {
+  addLog({
+    method: (options?.method ?? "GET").toUpperCase(),
+    route: url,
+    payload: options?.body
+      ? (() => {
+          try {
+            return JSON.parse(options.body as string);
+          } catch {
+            return options.body;
+          }
+        })()
+      : undefined,
+    response: body,
+    status: response.status,
+    error: isError ? (body.mensagem ?? "Erro inesperado") : undefined,
+  });
+
+  if (isError) {
     throw new ApiRequestError(
       body.codigo ?? "ERRO_DESCONHECIDO",
       body.mensagem ?? "Erro inesperado",

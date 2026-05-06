@@ -23,7 +23,7 @@ function PerfilPage() {
 
   const user = (data as unknown as Usuario) ?? authUser;
 
-  if (isLoading) {
+  if (isLoading || !user) {
     return (
       <main className="flex min-h-dvh items-start justify-center px-4 pt-16">
         <Card className="w-full max-w-md">
@@ -45,7 +45,7 @@ function PerfilPage() {
         <CardContent className="p-6">
           {editing ? (
             <ProfileEditForm
-              user={user!}
+              user={user}
               onCancel={() => setEditing(false)}
               onSaved={() => {
                 refetch();
@@ -54,7 +54,7 @@ function PerfilPage() {
             />
           ) : (
             <ProfileView
-              user={user!}
+              user={user}
               onEdit={() => setEditing(true)}
               onLogout={auth.logout}
             />

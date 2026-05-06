@@ -7,7 +7,8 @@
       "!**/dist",
       "!**/.vinxi",
       "!**/.output",
-      "!**/apps/www/src/api"
+      "!**/apps/www/src/api",
+      "!**/apps/www/src/routeTree.gen.ts"
     ]
   },
   "linter": {

@@ -7,6 +7,8 @@ import {
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { AuthProvider } from "@/shared/auth/auth-provider";
+import { RequestLogModal } from "@/shared/request-log/request-log-modal";
+import { ServerConfigProvider } from "@/shared/server-config/server-config-provider";
 import "@/styles.css";
 
 const queryClient = new QueryClient({
@@ -29,11 +31,14 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <Outlet />
-        </AuthProvider>
-      </QueryClientProvider>
+      <ServerConfigProvider>
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>
+            <Outlet />
+            <RequestLogModal />
+          </AuthProvider>
+        </QueryClientProvider>
+      </ServerConfigProvider>
     </RootDocument>
   );
 }

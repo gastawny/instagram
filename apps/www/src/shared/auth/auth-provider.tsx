@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { usePostUsuariosLogout } from "@/api/elysiaDocumentation";
+import { useServerConfig } from "@/shared/server-config/server-config-context";
 import { AuthContext, type Usuario } from "./auth-context";
 
 const TOKEN_KEY = "auth_token";
@@ -23,6 +24,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<Usuario | null>(initial.user);
 
   const { mutateAsync: logoutApi } = usePostUsuariosLogout();
+  const { reset: resetServerConfig } = useServerConfig();
 
   const login = useCallback((newToken: string, newUser: Usuario) => {
     localStorage.setItem(TOKEN_KEY, newToken);
@@ -41,7 +43,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem(USER_KEY);
     setToken(null);
     setUser(null);
-  }, [logoutApi]);
+    resetServerConfig();
+  }, [logoutApi, resetServerConfig]);
 
   const value = useMemo(
     () => ({ user, token, isAuthenticated: !!token, login, logout }),
