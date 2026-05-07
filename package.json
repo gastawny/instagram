@@ -29,9 +29,6 @@
     "typescript": "latest"
   },
   "simple-git-hooks": {
-    "pre-commit": "bunx lint-staged"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,json}": "biome check --write"
+    "pre-commit": "bunx biome check --write ."
   }
 }
